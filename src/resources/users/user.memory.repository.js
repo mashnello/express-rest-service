@@ -13,7 +13,7 @@ const create = async ({ name, login, password }) => {
 }
 
 const update = async ({ id, name, login, password }) => {
-  const user = USERS.find((usr) => usr.id === id);
+  const user = USERS.find((item) => item.id === id);
   user.name = name || user.name;
   user.login = login || user.login;
   user.password = password || user.password;
@@ -21,7 +21,7 @@ const update = async ({ id, name, login, password }) => {
 }
 
 const deleteById = async (id) => {
-  const index = USERS.findIndex((usr) => usr.id === id);
+  const index = USERS.findIndex((item) => item.id === id);
   USERS.splice(index, 1);
   return {};
 }
