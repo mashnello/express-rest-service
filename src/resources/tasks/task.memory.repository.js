@@ -2,9 +2,11 @@ const { v4: uuid } = require('uuid');
 
 const TASKS = [];
 
-const getAll = async () => TASKS;
+const getAll = async (boardId) =>
+  TASKS.filter((task) => task.boardId === boardId);
 
-const getById = async (id) => TASKS.find((task) => task.id === id);
+const getById = async (boardId, id) =>
+  TASKS.find((task) => task.boardId === boardId && task.id === id);
 
 const create = async ({
   title,
@@ -46,8 +48,10 @@ const update = async ({
   return task;
 };
 
-const deleteById = async (id) => {
-  const index = TASKS.findIndex((item) => item.id === id);
+const deleteById = async (boardId, id) => {
+  const index = TASKS.findIndex(
+    (item) => item.boardId === boardId && item.id === id
+  );
   TASKS.splice(index, 1);
   return {};
 };
