@@ -61,6 +61,14 @@ const deleteByBoardId = async (boardId) => {
   return {};
 };
 
+const unassignUserTasks = async (userId) => {
+  TASKS = TASKS.map((item) => ({
+    ...item,
+    userId: item.userId === userId ? null : item.userId,
+  }));
+  return {};
+};
+
 module.exports = {
   getAll,
   getById,
@@ -68,4 +76,5 @@ module.exports = {
   update,
   deleteById,
   deleteByBoardId,
+  unassignUserTasks,
 };
