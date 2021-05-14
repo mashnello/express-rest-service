@@ -1,5 +1,5 @@
 const boardsRepo = require('./board.memory.repository');
-const tasksService = require('../tasks/task.service');
+const tasksRepo = require('../tasks/task.memory.repository');
 
 const getAll = () => boardsRepo.getAll();
 
@@ -19,7 +19,7 @@ const update = ({ id, title, columns }) =>
   });
 
 const deleteById = (id) => {
-  tasksService.deleteByBoardId(id);
+  tasksRepo.deleteByBoardId(id);
   return boardsRepo.deleteById(id);
 };
 
