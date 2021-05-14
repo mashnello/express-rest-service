@@ -1,4 +1,5 @@
 const boardsRepo = require('./board.memory.repository');
+const tasksService = require('../tasks/task.service');
 
 const getAll = () => boardsRepo.getAll();
 
@@ -17,6 +18,9 @@ const update = ({ id, title, columns }) =>
     columns,
   });
 
-const deleteById = (id) => boardsRepo.deleteById(id);
+const deleteById = (id) => {
+  tasksService.deleteByBoardId(id);
+  return boardsRepo.deleteById(id);
+};
 
 module.exports = { getAll, getById, create, update, deleteById };

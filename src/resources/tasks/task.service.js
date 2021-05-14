@@ -27,4 +27,13 @@ const update = ({ id, title, order, description, userId, boardId, columnId }) =>
 
 const deleteById = (boardId, id) => tasksRepo.deleteById(boardId, id);
 
-module.exports = { getAll, getById, create, update, deleteById };
+const deleteByBoardId = (boardId) => tasksRepo.deleteByBoardId(boardId);
+
+module.exports = {
+  getAll,
+  getById,
+  create,
+  update,
+  deleteById,
+  deleteByBoardId,
+};

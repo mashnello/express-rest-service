@@ -1,6 +1,6 @@
 const { v4: uuid } = require('uuid');
 
-const TASKS = [];
+let TASKS = [];
 
 const getAll = async (boardId) =>
   TASKS.filter((task) => task.boardId === boardId);
@@ -56,4 +56,16 @@ const deleteById = async (boardId, id) => {
   return {};
 };
 
-module.exports = { getAll, getById, create, update, deleteById };
+const deleteByBoardId = async (boardId) => {
+  TASKS = TASKS.filter((item) => item.boardId !== boardId);
+  return {};
+};
+
+module.exports = {
+  getAll,
+  getById,
+  create,
+  update,
+  deleteById,
+  deleteByBoardId,
+};
