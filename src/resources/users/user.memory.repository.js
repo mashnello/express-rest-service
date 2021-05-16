@@ -1,10 +1,14 @@
 const { v4: uuid } = require('uuid');
+const { validateItemExists } = require('../../helpers/validation');
 
 let USERS = [];
 
 const getAll = async () => USERS;
 
-const getById = async (id) => USERS.find((user) => user.id === id);
+const getById = async (id) => {
+  validateItemExists(id, USERS);
+  return USERS.find((item) => item.id === id);
+};
 
 const create = async (user) => {
   const userWithId = { ...user, id: uuid() };
@@ -13,6 +17,7 @@ const create = async (user) => {
 };
 
 const update = async (user) => {
+  validateItemExists(user.id, USERS);
   USERS = USERS.map((item) =>
     item.id === user.id ? { ...item, ...user } : item
   );
@@ -20,6 +25,7 @@ const update = async (user) => {
 };
 
 const deleteById = async (id) => {
+  validateItemExists(id, USERS);
   USERS = USERS.filter((item) => item.id !== id);
   return {};
 };

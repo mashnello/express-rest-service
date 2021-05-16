@@ -1,12 +1,15 @@
 const { v4: uuid } = require('uuid');
+const { validateItemExists } = require('../../helpers/validation');
 
 let TASKS = [];
 
 const getAll = async (boardId) =>
   TASKS.filter((task) => task.boardId === boardId);
 
-const getById = async (boardId, id) =>
-  TASKS.find((task) => task.boardId === boardId && task.id === id);
+const getById = async (boardId, id) => {
+  validateItemExists(id, TASKS);
+  return TASKS.find((task) => task.boardId === boardId && task.id === id);
+};
 
 const create = async (task) => {
   const taskWithId = { ...task, id: uuid() };
@@ -15,6 +18,7 @@ const create = async (task) => {
 };
 
 const update = async (task) => {
+  validateItemExists(task.id, TASKS);
   TASKS = TASKS.map((item) =>
     item.id === task.id ? { ...item, ...task } : item
   );
@@ -22,6 +26,7 @@ const update = async (task) => {
 };
 
 const deleteById = async (boardId, id) => {
+  validateItemExists(id, TASKS);
   TASKS = TASKS.filter((item) => !(item.boardId === boardId && item.id === id));
   return {};
 };
