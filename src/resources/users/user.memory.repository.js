@@ -1,4 +1,4 @@
-const { v4: uuid } = require('uuid');
+const User = require('./user.model');
 const { validateItemExists } = require('../../helpers/validation');
 
 let USERS = [];
@@ -11,9 +11,9 @@ const getById = async (id) => {
 };
 
 const create = async (user) => {
-  const userWithId = { ...user, id: uuid() };
-  USERS.push(userWithId);
-  return userWithId;
+  const aUser = new User(user);
+  USERS.push(aUser);
+  return aUser;
 };
 
 const update = async (user) => {
