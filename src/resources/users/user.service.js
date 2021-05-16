@@ -5,11 +5,9 @@ const getAll = () => usersRepo.getAll();
 
 const getById = (id) => usersRepo.getById(id);
 
-const create = ({ name, login, password }) =>
-  usersRepo.create({ name, login, password });
+const create = (user) => usersRepo.create(user);
 
-const update = ({ id, name, login, password }) =>
-  usersRepo.update({ id, name, login, password });
+const update = (user) => usersRepo.update(user);
 
 const deleteById = (id) => {
   tasksRepo.unassignUserTasks(id);
