@@ -1,4 +1,4 @@
-const { v4: uuid } = require('uuid');
+const Board = require('./board.model');
 const { validateItemExists } = require('../../helpers/validation');
 
 let BOARDS = [];
@@ -11,9 +11,9 @@ const getById = async (id) => {
 };
 
 const create = async (board) => {
-  const boardWithId = { ...board, id: uuid() };
-  BOARDS.push(boardWithId);
-  return boardWithId;
+  const aBoard = new Board(board);
+  BOARDS.push(aBoard);
+  return aBoard;
 };
 
 const update = async (board) => {
