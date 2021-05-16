@@ -1,4 +1,4 @@
-const { v4: uuid } = require('uuid');
+const Task = require('./task.model');
 const { validateItemExists } = require('../../helpers/validation');
 
 let TASKS = [];
@@ -12,9 +12,9 @@ const getById = async (boardId, id) => {
 };
 
 const create = async (task) => {
-  const taskWithId = { ...task, id: uuid() };
-  TASKS.push(taskWithId);
-  return taskWithId;
+  const aTask = new Task(task);
+  TASKS.push(aTask);
+  return aTask;
 };
 
 const update = async (task) => {
