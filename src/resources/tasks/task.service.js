@@ -4,26 +4,9 @@ const getAll = (boardId) => tasksRepo.getAll(boardId);
 
 const getById = (boardId, id) => tasksRepo.getById(boardId, id);
 
-const create = ({ title, order, description, userId, boardId, columnId }) =>
-  tasksRepo.create({
-    title,
-    order,
-    description,
-    userId,
-    boardId,
-    columnId,
-  });
+const create = (task) => tasksRepo.create(task);
 
-const update = ({ id, title, order, description, userId, boardId, columnId }) =>
-  tasksRepo.update({
-    id,
-    title,
-    order,
-    description,
-    userId,
-    boardId,
-    columnId,
-  });
+const update = (task) => tasksRepo.update(task);
 
 const deleteById = (boardId, id) => tasksRepo.deleteById(boardId, id);
 
